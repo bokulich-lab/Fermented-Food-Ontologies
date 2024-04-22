@@ -7,14 +7,14 @@ The **Fermented Food Ontology (FFO)** aims to provide a description of fermented
 ## Visualization
 The Fermented Food Ontology (FOO) can be visualized interactively at https://bokulich-lab.github.io/FermDB/#graphs
  
-## Contributing to FOO
+## Contributing to FFO
 To suggest a new category or changes in the ontology please submit an issue in the current repository.
 For new categories please indicate the proposed 3-level hierarchy.
  
 ## Format
 The Fermented Food Ontology can be downloaded as a JSON file or python dictionary structure.
  
-## Citing the FOO
+## Citing the FFO
 If you have used the FOO please consider citing:
 Reference
 DOI
