@@ -1,0 +1,76 @@
+name: Comment Trigger
+
+on:
+  issue_comment:
+    types: [created, edited]
+
+jobs:
+  process_comment:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v2
+    
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+          node-version: '14'
+    
+    - name: Check if commenter is organization member
+      id: org-check
+      run: |
+        COMMENTER_LOGIN=$(jq -r .comment.user.login "$GITHUB_EVENT_PATH")
+        ORG="bokulich-lab"
+        RESPONSE=$(curl -s -H "Authorization: token ${{ secrets.ORG_ACCESS_TOKEN }}" "https://api.github.com/orgs/$ORG/members/$COMMENTER_LOGIN")
+        if [[ "$RESPONSE" == *"Not Found"* ]]; then
+          echo "Commenter is not a member of the organization."
+          exit 1
+        else
+          echo "Commenter is a member of the organization."
+        fi
+    
+    - name: Process Comment
+      id: process-comment
+      if: contains(github.event.comment.body, '/approved')
+      run: |
+          COMMENT_BODY=$(jq -r .comment.body "$GITHUB_EVENT_PATH")
+          ONTOLOGY_STRING=$(echo "$COMMENT_BODY" | grep -oP '(?<=/approved: )[^-]+-[^-]+-[^-]+')
+          echo "Ontology string: $ONTOLOGY_STRING"
+          echo "::set-output name=ontology_string::$ONTOLOGY_STRING"
+
+    
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+          python-version: '3.x' 
+    
+    - name: Execute Python script, commit changes
+      if: steps.process-comment.outputs.ontology_string
+      run: |
+          python3 .github/process_json.py
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          BRANCH_NAME="update-ontology-${{ steps.process-comment.outputs.ontology_string }}"
+          git checkout -b $BRANCH_NAME
+          git add ${{ github.workspace }}/fermented_food_ontology.json
+          git commit -m "Update ontology JSON file with new entry: ${{ steps.process-comment.outputs.ontology_string }}"
+          git push origin update-ontology-${{ steps.process-comment.outputs.ontology_string }}
+          echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
+
+
+      env:
+          ONTOLOGY_STRING: ${{ steps.process-comment.outputs.ontology_string }}
+          JSON_FILE_PATH: ${{ github.workspace }}/fermented_food_ontology.json  
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
+
+    - name: create pull request
+      run: gh pr create -B main -H update-ontology-${{ steps.process-comment.outputs.ontology_string }} --title 'Merge update-ontology-${{ steps.process-comment.outputs.ontology_string }} into main' --body 'Created by Github action'
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+
+        
+    
