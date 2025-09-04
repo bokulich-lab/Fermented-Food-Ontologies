@@ -32,7 +32,7 @@ fruits = {
                     "pepo fruit", "pepper", "persimmon", "pimiento", "pink peppercorn", "plantain", "plum tomato", "pome fruit", "pomegranate", "red currant",
                     "red grape", "pear", "sea buckthorn berry", "squashberry", "star fruit", "sweet green bell pepper", "sweet orange bell pepper",
                     "sweet red bell pepper", "sweet yellow bell pepper", "tamarillo", "tomatillo", "tomato", "white grape", "white peppercorn", "wood apple",
-                    "apple", "cashew apple" "cucumber", "cayenne pepper", "sichuan pepper", "okra", "korean chili pepper", "hawberries", "acai berry", "banana", "plantain"],
+                    "apple", "cashew apple" "cucumber", "cayenne pepper", "sichuan pepper", "okra", "korean chili pepper", "hawberries", "acai berry", "banana", "plantain", "bird’s eye chili"],
     "capsule fruit": ["coccarium capsule fruit", "loculicidal capsule fruit", "poricidal capsule fruit", "septicidal capsule fruit"],
     "drupe fruit": ["acerola", "almond", "apricot", "coffee bean", "arabica coffee bean", "bayberry", "black walnut", "cherry", "date", "hickory nut",
                     "italian prune plum", "jubebe fruit", "longan", "lychee", "mango", "nectarine", "olive", "peach", "pecan", "pili nut", "pistachio nut", "plum",
@@ -45,12 +45,12 @@ legumes_seeds = {
     "nuts":["areca nut", "bambara groundnut", "brazilnut", "ginkgo nut", "kola nut", "macadamia nut", "peanut", "pine nut", "shea nut", "spanish peanut", "hazelnut"],
     "peas":["alaska pea", "catjang pea", "pea", "pigeon pea", "sweet pea"],
     "bean": ["adzuki beans", "broad beans", "cowpea", "cranberry bean", "jack bean", "kidney", "pinto bean", "lima bean", "lupin bean", "moth bean", "mung bean",
-             "soybean", "velvet bean", "wax bean", "white bean", "hyacinth bean", "tonka bean", "black gram bean", "african locust bean", "african mesquite bean", "african oil bean"],
+             "soybean", "velvet bean", "wax bean", "white bean", "hyacinth bean", "tonka bean", "black gram bean", "african locust bean", "african mesquite bean", "african oil bean", "african yam-bean", "green bean"],
     "seeds": ["acacia seed", "alfalfa seed","amaranth seed", "anise seed", "cardamom", "charoli seed", "chia seed", "chickpea", "cocoa bean", "cumin seed", "dill seed",
               "egusi seed", "fenugreek seed", "flaxseed", "fruit seed", "indian mustard seed", "lotus seed", "melon seed", "mustard seed", "okra seed", "rapeseed",
               "river tamarind seed", "sunflower seed", "juniper berry", "vanilla bean", "vetch seed", "white fonio seed", "locust bean", "lentil", "quinoa seed",
-              "sesame seed", "buckwheat seed", "roselle seed", "watermelon seed", "cotton seed", "african baobab seed"],
-    "spice_seeds":["caraway seeds", "cumin"]
+              "sesame seed", "buckwheat seed", "roselle seed", "watermelon seed", "cotton seed", "african baobab seed", "kapok seed"],
+    "spice_seeds":["caraway seeds", "cumin", "fennel seed"]
 }
 
 cereals = {
@@ -79,7 +79,7 @@ vegetables = {
     "sap": ["coconut palm sap", "date palm sap", "agave sap", "raffia palm sap"],
     "flower": ["artichoke flower", "clove"],
     "petal": ["rose petals"],
-    "mushroom": ["shiitake mushroom", "bearded tooth mushroom"]
+    "mushroom": ["shiitake mushroom", "bearded tooth mushroom", "maitake mushroom"]
 }
 
 non_fruit_carbohydrates = {
@@ -87,7 +87,7 @@ non_fruit_carbohydrates = {
 }
 
 herbs_spices = {
-    "aromatic herbs": ["coriander", "dill", "bay leaves"],
+    "aromatic herbs": ["coriander", "dill", "bay leaves", "hops"],
 }
 
 
